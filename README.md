@@ -10,6 +10,10 @@ https://gnn.gamer.com.tw/
 
 * 執行程式指令
 
-``$ sh deploy.sh``
+```
+$ sh deploy.sh
+```
 
-``$ python3 main.py``
+```
+$ python3 main.py
+```
