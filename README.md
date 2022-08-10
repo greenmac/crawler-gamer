@@ -15,5 +15,5 @@ $ sh deploy.sh
 ```
 
 ```
-$ python3 main.py
+$ python3 run.py
 ```
