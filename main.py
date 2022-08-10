@@ -1,8 +1,12 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
 import requests
 import os
 
 from utils import timer
+
+now_date = datetime.now()
+now_date = datetime.strftime(now_date, '%Y%m%d_%H%M%S')
 
 @timer
 def crawlerGamerInfo():
@@ -15,8 +19,10 @@ def crawlerGamerInfo():
     soup = BeautifulSoup(resp_results, 'lxml')
     soup_img = soup.select('.GN-lbox2E')
     
-    if not os.path.exists("images"):
-        os.mkdir("images")  # 建立資料夾
+    if not os.path.exists('images'):
+        os.mkdir('images')  # 建立資料夾
+    if not os.path.exists(f'images/{now_date}'):
+        os.mkdir(f'images/{now_date}')  # 建立資料夾
         
     for i in soup_img:
         img_url = i.select('img')[0].get('src')
@@ -27,7 +33,7 @@ def crawlerGamerInfo():
         print(img_url)
         print('-'*20)
         
-        with open(f'./images/{resp_img_title}.jpg', 'wb') as file:  # 開啟資料夾及命名圖片檔
+        with open(f'./images/{now_date}/{resp_img_title}.jpg', 'wb') as file:  # 開啟資料夾及命名圖片檔
             file.write(resp_img.content)
 
 if __name__ == '__main__':
